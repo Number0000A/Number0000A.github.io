@@ -3,78 +3,86 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart Dentine recording</title>
+  <title>Smart Dental system</title>
   <link rel="icon" type ="image/x-icon" href="WeChat Image_20241105110447.jpg">
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
   <style>
     body {
-      padding-top: 70px;
+      padding-top: 70px;  /* Adjusts for the navbar height */
+    }
+    .navbar {
+      margin-bottom: 20px;
+    }
+    .tab-content {
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-top: none;
+    }
+    .tab-pane {
+      min-height: 200px; /* Minimum height for each content section */
     }
   </style>
 </head>
 <body>
+  <!-- Navbar -->
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">Smart dentine recording system</a>
+        <a class="navbar-brand" href="#">Smart Dental system</a>
       </div>
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#tab1" data-toggle="tab">Dental recording</a></li>
-        <li><a href="#tab2" data-toggle="tab">Analysis</a></li>
+        <li class="active"><a href="#tab1" data-toggle="tab">Tooth condition setup</a></li>
+        <li><a href="#tab2" data-toggle="tab">Disease detail input</a></li>
+        <li><a href="#tab3" data-toggle="tab">Information checking</a></li>
+        <li><a href="#tab4" data-toggle="tab">Download/Upload</a></li>
+        <li><a href="#tab5" data-toggle="tab">Read & Analysis</a></li>
+        <li><a href="#tab6" data-toggle="tab">Contact & Reference </a></li>
       </ul>
     </div>
   </nav>
 
+  <!-- Tab Content -->
   <div class="container">
     <div class="tab-content">
       <div class="tab-pane fade in active" id="tab1">
-        <div class="row">
-          <div class="col-sm-3">
-            <h3>Column 1</h3>
-            <p>Content for column one.</p>
-          </div>
-          <div class="col-sm-3">
-            <h3>Column 2</h3>
-            <p>Content for column two.</p>
-          </div>
-          <div class="col-sm-3">
-            <h3>Column 3</h3>
-            <p>Content for column three.</p>
-          </div>
-          <div class="col-sm-3">
-            <h3>Column 4</h3>
-            <p>Content for column four.</p>
-          </div>
-        </div>
+        <h3>Choose the tooth base and their basic conditions</h3>
+        <p>Q4. The detail information could be add-in in the next section if needed</p>
+        <p>Q1. Child/Adult</p>
+        <p>Q2. Choose missing tooth</p>
+        <p>Q3. Choose tooth with Carries</p>
+        <p>Q4. Choose tooth with EH</p>
+        <p>Q5. Choose missing sockets</p>
+        <p>Q4. Choose tooth with ABS</p>
+        <p>Q4. Choose tooth with PER</p>
+        <p>Q4. Choose tooth with DC</p>
+
       </div>
       <div class="tab-pane fade" id="tab2">
-        <div class="row">
-          <div class="col-sm-4">
-            <form class="well">
-              <h3>Batch Processing</h3>
-              <button type="button" class="btn btn-default">Process</button>
-              <hr/>
-              <h3>Upload Data</h3>
-              <div class="form-group">
-                <label for="batch">Select file</label>
-                <input type="file" id="batch" class="form-control">
-              </div>
-              <button type="button" class="btn btn-default">Process Data Batch</button>
-            </form>
-          </div>
-          <div class="col-sm-8">
-            <h2>Expected bio-geographical origin</h2>
-            <p>Results will be displayed here.</p>
-            <h2>Trait Importance</h2>
-            <p>More results will be displayed here.</p>
-          </div>
-        </div>
+        <h3>About</h3>
+        <p>This is the About section. You can provide information about your company, team, or background.</p>
+      </div>
+      <div class="tab-pane fade" id="tab3">
+        <h3>Services</h3>
+        <p>In the Services section, you can outline the services or products you offer to your customers.</p>
+      </div>
+      <div class="tab-pane fade" id="tab4">
+        <h3>Portfolio</h3>
+        <p>The Portfolio section can showcase your previous projects or work samples to potential clients.</p>
+      </div>
+      <div class="tab-pane fade" id="tab5">
+        <h3>Blog</h3>
+        <p>In the Blog section, you can add articles, tutorials, or any other blog-style content.</p>
+      </div>
+      <div class="tab-pane fade" id="tab6">
+        <h3>Contact</h3>
+        <p>The Contact section provides information on how users can reach you or fill out a contact form.</p>
       </div>
     </div>
   </div>
 
+  <!-- jQuery, Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </body>
