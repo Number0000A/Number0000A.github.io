@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Smart Dental system</title>
-  <link rel="icon" type ="image/x-icon" href="WeChat Image_20241105110447.jpg">
+  <link rel="icon" type="image/x-icon" href="WeChat Image_20241105110447.jpg">
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
@@ -23,14 +23,35 @@
     .tab-pane {
       min-height: 200px; /* Minimum height for each content section */
     }
+    /* Style for the toggle button */
+    .navbar-toggle-btn {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 1050;
+    }
+    /* CSS for rotation of the arrow */
+    .arrow-icon {
+      transition: transform 0.3s ease; /* Smooth transition for rotation */
+    }
+    .rotate {
+      transform: rotate(180deg); /* Rotate the arrow when navbar is visible */
+    }
   </style>
 </head>
 <body>
+  <!-- Toggle Button and Title (Fixed Position) -->
+  <button id="toggleNavbar" class="btn btn-default navbar-toggle-btn">
+    <i id="arrowIcon" class="fas fa-chevron-down arrow-icon"></i>
+  </button>
+  <div id="pageTitle" style="text-align: center; padding: 10px;">
+  </div>
+
   <!-- Navbar -->
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">Smart Dental system</a>
+        <a class="navbar-brand" href="#">Smart Dental System</a>
       </div>
       <ul class="nav navbar-nav">
         <li class="active"><a href="#tab1" data-toggle="tab">Tooth condition setup</a></li>
@@ -38,7 +59,7 @@
         <li><a href="#tab3" data-toggle="tab">Information checking</a></li>
         <li><a href="#tab4" data-toggle="tab">Download/Upload</a></li>
         <li><a href="#tab5" data-toggle="tab">Read & Analysis</a></li>
-        <li><a href="#tab6" data-toggle="tab">Contact & Reference </a></li>
+        <li><a href="#tab6" data-toggle="tab">Contact & Reference</a></li>
       </ul>
     </div>
   </nav>
@@ -48,16 +69,15 @@
     <div class="tab-content">
       <div class="tab-pane fade in active" id="tab1">
         <h3>Choose the tooth base and their basic conditions</h3>
-        <p>Q4. The detail information could be add-in in the next section if needed</p>
+        <p>The detail information could be add-in in the Disease detail input section if needed</p>
         <p>Q1. Child/Adult</p>
         <p>Q2. Choose missing tooth</p>
         <p>Q3. Choose tooth with Carries</p>
         <p>Q4. Choose tooth with EH</p>
         <p>Q5. Choose missing sockets</p>
-        <p>Q4. Choose tooth with ABS</p>
-        <p>Q4. Choose tooth with PER</p>
-        <p>Q4. Choose tooth with DC</p>
-
+        <p>Q6. Choose tooth with ABS</p>
+        <p>Q7. Choose tooth with PER</p>
+        <p>Q8. Choose tooth with DC</p>
       </div>
       <div class="tab-pane fade" id="tab2">
         <h3>About</h3>
@@ -85,5 +105,23 @@
   <!-- jQuery, Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <script>
+    // Toggle Navbar visibility
+    $('#toggleNavbar').click(function(event) {
+      event.preventDefault(); // Prevent default anchor action
+      $('.navbar').toggle();
+      
+      // Toggle the rotation of the arrow
+      $('#arrowIcon').toggleClass('rotate');
+      
+      // Adjust padding for body based on navbar visibility
+      if ($('.navbar').is(':visible')) {
+        $('body').css('padding-top', '70px');
+      } else {
+        $('body').css('padding-top', '0');
+      }
+    });
+  </script>
 </body>
 </html>
