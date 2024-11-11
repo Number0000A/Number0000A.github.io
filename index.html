@@ -11,6 +11,8 @@
   <style>
     body {
       padding-top: 70px;  /* Adjusts for the navbar height */
+      font-family: Arial, sans-serif;
+      margin: 20px;
     }
     .navbar {
       margin-bottom: 20px;
@@ -37,6 +39,46 @@
     .rotate {
       transform: rotate(180deg); /* Rotate the arrow when navbar is visible */
     }
+    .button-container {
+        display: grid;
+        gap: 8px;
+        margin: 20px 0; /* Align to the left */
+        max-width: 400px;
+    }
+    .button {
+        font-size: 80%;
+        padding: 6px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        border: 2px solid #555;
+        background-color: #f0f0f0;
+    }
+    /* Brightness change for clicked buttons */
+    .button.clicked {
+        filter: brightness(30%); /* Increase brightness */
+    }
+    .purple-button {
+        background-color: #D6B0FF;
+        color: black;
+        border-color: #8A2BE2;
+    }
+    .orange-button {
+        background-color: #F0B090;
+        color: black;
+        border-color: #E75B23;
+    }
+    #buttonContainerQ2 { grid-template-columns: repeat(16, 4fr); }
+    #buttonContainerQ3 { grid-template-columns: repeat(16, 4fr); }
+    #buttonContainerQ4 { grid-template-columns: repeat(16, 4fr); }
+    #buttonContainerQ5 { grid-template-columns: repeat(16, 4fr); }
+    #buttonContainerQ6 { grid-template-columns: repeat(16, 4fr); }
+    #buttonContainerQ7 { grid-template-columns: repeat(16, 4fr); }
+    #buttonContainerQ8 { grid-template-columns: repeat(16, 4fr); }
+    .child-buttons { grid-template-columns: repeat(16, 2fr); }
+    .adult-buttons { grid-template-columns: repeat(16, 2fr); }
+    .teenager-buttons { grid-template-columns: repeat(16, 4fr); }
+    .hidden { display: none; }
   </style>
 </head>
 <body>
@@ -69,15 +111,57 @@
     <div class="tab-content">
       <div class="tab-pane fade in active" id="tab1">
         <h3>Choose the tooth base and their basic conditions</h3>
-        <p>The detail information could be add-in in the Disease detail input section if needed</p>
-        <p>Q1. Child/Adult</p>
-        <p>Q2. Choose missing tooth</p>
-        <p>Q3. Choose tooth with Carries</p>
-        <p>Q4. Choose tooth with EH</p>
-        <p>Q5. Choose missing sockets</p>
-        <p>Q6. Choose tooth with ABS</p>
-        <p>Q7. Choose tooth with PER</p>
-        <p>Q8. Choose tooth with DC</p>
+        <!-- Question 1 -->
+        <h4>Question 1: Select prefer tooth Group</h4>
+        <label><input type="radio" name="ageGroup" value="child"> Child</label>
+        <label><input type="radio" name="ageGroup" value="adult"> Adult</label>
+        <label><input type="radio" name="ageGroup" value="teenager"> Teenager</label>
+
+        <!-- Question 2 -->
+        <div id="question2" >
+            <h4>Question 2: Select Missing tooth</h4>
+            <div id="buttonContainerQ2" class="button-container"></div>
+            <p id="selectedButtonsQ2"></p> <!-- Display selected buttons -->
+        </div>
+
+        <!-- Question 3 -->
+        <div id="question3" >
+            <h4>Question 3. Choose tooth with Carries</h4>
+            <div id="buttonContainerQ3" class="button-container"></div>
+            <p id="selectedButtonsQ3"></p> <!-- Display selected buttons -->
+        </div>
+        
+        <!-- Question 4 -->
+        <div id="question4" >
+            <h4>Question 4. Choose tooth with EH</h4>
+            <div id="buttonContainerQ4" class="button-container"></div>
+            <p id="selectedButtonsQ4"></p> <!-- Display selected buttons -->
+        </div>
+        <!-- Question 5 -->
+        <div id="question5" >
+            <h4>Question 5. Choose missing sockets</h4>
+            <div id="buttonContainerQ5" class="button-container"></div>
+            <p id="selectedButtonsQ5"></p> <!-- Display selected buttons -->
+        </div>
+        <!-- Question 6 -->
+        <div id="question6" >
+            <h4>Question 6. Choose tooth with ABS</h4>
+            <div id="buttonContainerQ6" class="button-container"></div>
+            <p id="selectedButtonsQ6"></p> <!-- Display selected buttons -->
+        </div>
+        
+        <!-- Question 7 -->
+        <div id="question7" >
+            <h4>Question 7. Choose tooth with PER</h4>
+            <div id="buttonContainerQ7" class="button-container"></div>
+            <p id="selectedButtonsQ7"></p> <!-- Display selected buttons -->
+        </div>        
+        <!-- Question 8 -->
+        <div id="question8" >
+            <h4>Question 8. Choose tooth with DC</h4>
+            <div id="buttonContainerQ8" class="button-container"></div>
+            <p id="selectedButtonsQ8"></p> <!-- Display selected buttons -->
+        </div>   
       </div>
       <div class="tab-pane fade" id="tab2">
         <h3>About</h3>
@@ -107,6 +191,117 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
   <script>
+    const buttonTemplates = {
+        child: ['U-R-I1','U-R-I2','U-R-C','U-R-P1','U-R-P2','U-R-M1','U-R-M2', 'U-R-M3','U-L-I1','U-L-I2','U-L-C','U-L-P1','U-L-P2','U-L-M1','U-L-M2', 'U-L-M3','L-R-I1','L-R-I2','L-R-C','L-R-P1','L-R-P2','L-R-M1','L-R-M2', 'L-R-M3','L-L-I1','L-L-I2','L-L-C','L-L-P1','L-L-P2','L-L-M1','L-L-M2', 'L-L-M3'], 
+        adult: [null,null,null, 'U-R-I1','U-R-I2','U-R-C','U-R-P1','U-R-P2','U-L-I1','U-L-I2','U-L-C','U-L-P1','U-L-P2', null,null, null,null,null,null, 'L-R-I1','L-R-I2','L-R-C','L-R-P1','L-R-P2','L-L-I1','L-L-I2','L-L-C','L-L-P1','L-L-P2', null,null, null],
+        teenager: ['U-R-I1','U-R-I2','U-R-C','U-R-P1','U-R-P2','U-R-M1','U-R-M2', 'U-R-M3','U-L-I1','U-L-I2','U-L-C','U-L-P1','U-L-P2','U-L-M1','U-L-M2', 'U-L-M3',null,null,null, 'U-R-I1','U-R-I2','U-R-C','U-R-P1','U-R-P2','U-L-I1','U-L-I2','U-L-C','U-L-P1','U-L-P2', null,null, null,null,null,null, 'L-R-I1','L-R-I2','L-R-C','L-R-P1','L-R-P2','L-L-I1','L-L-I2','L-L-C','L-L-P1','L-L-P2', null,null, null,'L-R-I1','L-R-I2','L-R-C','L-R-P1','L-R-P2','L-R-M1','L-R-M2', 'L-R-M3','L-L-I1','L-L-I2','L-L-C','L-L-P1','L-L-P2','L-L-M1','L-L-M2', 'L-L-M3']
+    };
+
+    const ageGroupRadios = document.querySelectorAll('input[name="ageGroup"]');
+    const question2 = document.getElementById('question2');
+    const question3 = document.getElementById('question3');
+    const question4 = document.getElementById('question4');
+    const question5 = document.getElementById('question5');
+    const question6 = document.getElementById('question6');
+    const question7 = document.getElementById('question7');
+    const question8 = document.getElementById('question8');
+    const buttonContainerQ2 = document.getElementById('buttonContainerQ2');
+    const buttonContainerQ3 = document.getElementById('buttonContainerQ3');
+    const buttonContainerQ4 = document.getElementById('buttonContainerQ4');
+    const buttonContainerQ5 = document.getElementById('buttonContainerQ5');
+    const buttonContainerQ6 = document.getElementById('buttonContainerQ6');
+    const buttonContainerQ7 = document.getElementById('buttonContainerQ7');
+    const buttonContainerQ8 = document.getElementById('buttonContainerQ8');
+    const selectedButtonsQ2 = document.getElementById('selectedButtonsQ2');
+    const selectedButtonsQ3 = document.getElementById('selectedButtonsQ3');
+    const selectedButtonsQ4 = document.getElementById('selectedButtonsQ4');
+    const selectedButtonsQ5 = document.getElementById('selectedButtonsQ5');
+    const selectedButtonsQ6 = document.getElementById('selectedButtonsQ6');
+    const selectedButtonsQ7 = document.getElementById('selectedButtonsQ7');
+    const selectedButtonsQ8 = document.getElementById('selectedButtonsQ8');
+    // Store clicked button names
+    const selectedNames = { Q2: [], Q3: [], Q4: [], Q5: [], Q6: [], Q7: [], Q8: [] };
+
+    function renderButtons(container, ageGroup, selectedDisplay, question) {
+        container.innerHTML = '';
+        container.classList.remove('child-buttons', 'adult-buttons', 'teenager-buttons');
+        container.classList.add(`${ageGroup}-buttons`);
+
+        buttonTemplates[ageGroup].forEach(label => {
+            if (label) {
+                const button = document.createElement('button');
+                button.classList.add('button');
+                button.textContent = label;
+
+                if (label.includes('-R-')) {
+                    button.classList.add('purple-button');
+                } else if (label.includes('-L-')) {
+                    button.classList.add('orange-button');
+                }
+
+                // Add click event listener
+                button.addEventListener('click', () => handleButtonClick(button, label, selectedDisplay, question));
+
+                container.appendChild(button);
+            } else {
+                const emptySpace = document.createElement('div');
+                emptySpace.classList.add('button');
+                emptySpace.style.visibility = 'hidden';
+                container.appendChild(emptySpace);
+            }
+        });
+    }
+
+    function handleButtonClick(button, label, selectedDisplay, question) {
+        const selectedArray = selectedNames[question];
+
+        if (button.classList.toggle('clicked')) {
+            selectedArray.push(label);
+        } else {
+            const index = selectedArray.indexOf(label);
+            if (index > -1) {
+                selectedArray.splice(index, 1);
+            }
+        }
+        selectedDisplay.textContent = selectedArray.join(' / ');
+    }
+
+    ageGroupRadios.forEach(radio => {
+        radio.addEventListener('change', () => {
+            const selectedGroup = radio.value;
+
+            // Clear previous selections
+            selectedNames.Q2 = [];
+            selectedNames.Q3 = [];
+            selectedNames.Q4 = [];
+            selectedNames.Q5 = [];
+            selectedNames.Q6 = [];
+            selectedNames.Q7 = [];
+            selectedNames.Q8 = [];
+            selectedButtonsQ2.textContent = '';
+            selectedButtonsQ3.textContent = '';
+            selectedButtonsQ4.textContent = '';
+            selectedButtonsQ5.textContent = '';
+            selectedButtonsQ6.textContent = '';
+            selectedButtonsQ7.textContent = '';
+            selectedButtonsQ8.textContent = '';
+            question2.classList.remove('hidden');
+            question3.classList.remove('hidden');
+            question4.classList.remove('hidden');
+            question5.classList.remove('hidden');
+            question6.classList.remove('hidden');
+            question7.classList.remove('hidden');
+            question8.classList.remove('hidden');
+            renderButtons(buttonContainerQ2, selectedGroup, selectedButtonsQ2, 'Q2');
+            renderButtons(buttonContainerQ3, selectedGroup, selectedButtonsQ3, 'Q3');
+            renderButtons(buttonContainerQ4, selectedGroup, selectedButtonsQ4, 'Q4');
+            renderButtons(buttonContainerQ5, selectedGroup, selectedButtonsQ5, 'Q5');
+            renderButtons(buttonContainerQ6, selectedGroup, selectedButtonsQ6, 'Q6');
+            renderButtons(buttonContainerQ7, selectedGroup, selectedButtonsQ7, 'Q7');
+            renderButtons(buttonContainerQ8, selectedGroup, selectedButtonsQ8, 'Q8');
+        });
+    });
+
     // Toggle Navbar visibility
     $('#toggleNavbar').click(function(event) {
       event.preventDefault(); // Prevent default anchor action
