@@ -57,6 +57,11 @@
         border: 2px solid #555;
         background-color: #f0f0f0;
     }
+    .null-button {
+        width: 10px;  /* Or the desired width */
+        height: 30px;  /* Or the desired height */
+    }
+    
     /* Brightness change for clicked buttons */
     .button.clicked {
         filter: brightness(30%); /* Increase brightness */
@@ -197,8 +202,8 @@
 
   <script>
     const buttonTemplates = {
-        child: ['U-R-I1','U-R-I2','U-R-C','U-R-P1','U-R-P2','U-R-M1','U-R-M2', 'U-R-M3','U-L-I1','U-L-I2','U-L-C','U-L-P1','U-L-P2','U-L-M1','U-L-M2', 'U-L-M3','L-R-I1','L-R-I2','L-R-C','L-R-P1','L-R-P2','L-R-M1','L-R-M2', 'L-R-M3','L-L-I1','L-L-I2','L-L-C','L-L-P1','L-L-P2','L-L-M1','L-L-M2', 'L-L-M3'], 
-        adult: [null,null,null, 'U-R-I1','U-R-I2','U-R-C','U-R-P1','U-R-P2','U-L-I1','U-L-I2','U-L-C','U-L-P1','U-L-P2', null,null, null,null,null,null, 'L-R-I1','L-R-I2','L-R-C','L-R-P1','L-R-P2','L-L-I1','L-L-I2','L-L-C','L-L-P1','L-L-P2', null,null, null],
+        adult: ['U-R-I1','U-R-I2','U-R-C','U-R-P1','U-R-P2','U-R-M1','U-R-M2', 'U-R-M3','U-L-I1','U-L-I2','U-L-C','U-L-P1','U-L-P2','U-L-M1','U-L-M2', 'U-L-M3','L-R-I1','L-R-I2','L-R-C','L-R-P1','L-R-P2','L-R-M1','L-R-M2', 'L-R-M3','L-L-I1','L-L-I2','L-L-C','L-L-P1','L-L-P2','L-L-M1','L-L-M2', 'L-L-M3'], 
+        child: [null,null,null, 'U-R-I1','U-R-I2','U-R-C','U-R-P1','U-R-P2','U-L-I1','U-L-I2','U-L-C','U-L-P1','U-L-P2', null,null, null,null,null,null, 'L-R-I1','L-R-I2','L-R-C','L-R-P1','L-R-P2','L-L-I1','L-L-I2','L-L-C','L-L-P1','L-L-P2', null,null, null],
         teenager: ['U-R-I1','U-R-I2','U-R-C','U-R-P1','U-R-P2','U-R-M1','U-R-M2', 'U-R-M3','U-L-I1','U-L-I2','U-L-C','U-L-P1','U-L-P2','U-L-M1','U-L-M2', 'U-L-M3',null,null,null, 'U-R-I1','U-R-I2','U-R-C','U-R-P1','U-R-P2','U-L-I1','U-L-I2','U-L-C','U-L-P1','U-L-P2', null,null, null,null,null,null, 'L-R-I1','L-R-I2','L-R-C','L-R-P1','L-R-P2','L-L-I1','L-L-I2','L-L-C','L-L-P1','L-L-P2', null,null, null,'L-R-I1','L-R-I2','L-R-C','L-R-P1','L-R-P2','L-R-M1','L-R-M2', 'L-R-M3','L-L-I1','L-L-I2','L-L-C','L-L-P1','L-L-P2','L-L-M1','L-L-M2', 'L-L-M3']
     };
 
@@ -231,32 +236,33 @@
         container.innerHTML = '';
         container.classList.remove('child-buttons', 'adult-buttons', 'teenager-buttons');
         container.classList.add(`${ageGroup}-buttons`);
-
+    
         buttonTemplates[ageGroup].forEach(label => {
-            if (label) {
+            if (label !== null) {
                 const button = document.createElement('button');
                 button.classList.add('button');
                 button.textContent = label;
-
+    
                 if (label.includes('-R-')) {
                     button.classList.add('purple-button');
                 } else if (label.includes('-L-')) {
                     button.classList.add('orange-button');
                 }
-
+    
                 // Add click event listener
                 button.addEventListener('click', () => handleButtonClick(button, label, selectedDisplay, question));
-
+    
                 container.appendChild(button);
             } else {
-                const emptySpace = document.createElement('div');
-                emptySpace.classList.add('button');
-                emptySpace.style.visibility = 'hidden';
-                container.appendChild(emptySpace);
+                // If the label is null, create a div with the class 'null-button'
+                const nullButton = document.createElement('div');
+                nullButton.classList.add('null-button');
+                nullButton.style.visibility = 'hidden';  // Make it invisible but keep the space
+                container.appendChild(nullButton);
             }
         });
     }
-
+    
     function handleButtonClick(button, label, selectedDisplay, question) {
         const selectedArray = selectedNames[question];
 
