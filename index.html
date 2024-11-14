@@ -44,8 +44,11 @@
         gap: 8px;
         margin: 20px 0; /* Align to the left */
         max-width: 400px;
+        
     }
     .button {
+        /* Other button styles here */
+        transition: visibility 0.3s ease; /* Optional: smooth transition for visibility change */
         font-size: 80%;
         padding: 6px;
         border-radius: 5px;
@@ -78,7 +81,9 @@
     .child-buttons { grid-template-columns: repeat(16, 2fr); }
     .adult-buttons { grid-template-columns: repeat(16, 2fr); }
     .teenager-buttons { grid-template-columns: repeat(16, 4fr); }
-    .hidden { display: none; }
+    .hidden {
+        display: none !important;
+    }
   </style>
 </head>
 <body>
@@ -139,7 +144,7 @@
         </div>
         <!-- Question 5 -->
         <div id="question5" >
-            <h4>Question 5. Choose tooth with EH</h4>
+            <h4>Question 5. Choose tooth with with EH</h4>
             <div id="buttonContainerQ5" class="button-container"></div>
             <p id="selectedButtonsQ5"></p> <!-- Display selected buttons -->
         </div>
@@ -264,7 +269,82 @@
             }
         }
         selectedDisplay.textContent = selectedArray.join(' / ');
+        
+        // Call function to update visibility based on Q2 (affecting Q4 and Q5)
+        if (question === 'Q2') {
+            toggleQ4Q5Visibility();
+        }
+
+        // Call function to update visibility based on Q3 (affecting Q6, Q7, Q8)
+        if (question === 'Q3') {
+            toggleQ6Q8Visibility();
+        }
     }
+
+    function toggleQ4Q5Visibility() {
+        const q2SelectedLabels = selectedNames.Q2;
+        const q4Buttons = document.querySelectorAll('#buttonContainerQ4 .button');
+        const q5Buttons = document.querySelectorAll('#buttonContainerQ5 .button');
+    
+        // Toggle visibility for Q4
+        q4Buttons.forEach((button) => {
+            const correspondingLabel = button.textContent;
+            if (q2SelectedLabels.includes(correspondingLabel)) {
+                button.style.visibility = 'hidden'; // Hide but leave space
+            } else {
+                button.style.visibility = 'visible'; // Make visible again
+            }
+        });
+    
+        // Toggle visibility for Q5
+        q5Buttons.forEach((button) => {
+            const correspondingLabel = button.textContent;
+            if (q2SelectedLabels.includes(correspondingLabel)) {
+                button.style.visibility = 'hidden'; // Hide but leave space
+            } else {
+                button.style.visibility = 'visible'; // Make visible again
+            }
+        });
+    }
+    
+
+    function toggleQ6Q8Visibility() {
+        const q3SelectedLabels = selectedNames.Q3;
+        const q6Buttons = document.querySelectorAll('#buttonContainerQ6 .button');
+        const q7Buttons = document.querySelectorAll('#buttonContainerQ7 .button');
+        const q8Buttons = document.querySelectorAll('#buttonContainerQ8 .button');
+    
+        // Toggle visibility for Q6
+        q6Buttons.forEach((button) => {
+            const correspondingLabel = button.textContent;
+            if (q3SelectedLabels.includes(correspondingLabel)) {
+                button.style.visibility = 'hidden'; // Hide but leave space
+            } else {
+                button.style.visibility = 'visible'; // Make visible again
+            }
+        });
+    
+        // Toggle visibility for Q7
+        q7Buttons.forEach((button) => {
+            const correspondingLabel = button.textContent;
+            if (q3SelectedLabels.includes(correspondingLabel)) {
+                button.style.visibility = 'hidden'; // Hide but leave space
+            } else {
+                button.style.visibility = 'visible'; // Make visible again
+            }
+        });
+    
+        // Toggle visibility for Q8
+        q8Buttons.forEach((button) => {
+            const correspondingLabel = button.textContent;
+            if (q3SelectedLabels.includes(correspondingLabel)) {
+                button.style.visibility = 'hidden'; // Hide but leave space
+            } else {
+                button.style.visibility = 'visible'; // Make visible again
+            }
+        });
+    }
+    
 
     ageGroupRadios.forEach(radio => {
         radio.addEventListener('change', () => {
