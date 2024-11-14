@@ -265,92 +265,194 @@
     
     function handleButtonClick(button, label, selectedDisplay, question) {
         const selectedArray = selectedNames[question];
-
+    
+        console.log(`Button clicked: ${label}`);
+        console.log(`Initial selected array for ${question}:`, selectedArray);
+    
         if (button.classList.toggle('clicked')) {
             selectedArray.push(label);
+            console.log(`${label} added to ${question}`);
         } else {
             const index = selectedArray.indexOf(label);
             if (index > -1) {
                 selectedArray.splice(index, 1);
+                console.log(`${label} removed from ${question}`);
             }
         }
+    
         selectedDisplay.textContent = selectedArray.join(' / ');
-        
+    
         // Call function to update visibility based on Q2 (affecting Q4 and Q5)
         if (question === 'Q2') {
             toggleQ4Q5Visibility();
         }
-
+    
         // Call function to update visibility based on Q3 (affecting Q6, Q7, Q8)
         if (question === 'Q3') {
             toggleQ6Q8Visibility();
         }
     }
-
+    
     function toggleQ4Q5Visibility() {
         const q2SelectedLabels = selectedNames.Q2;
         const q4Buttons = document.querySelectorAll('#buttonContainerQ4 .button');
         const q5Buttons = document.querySelectorAll('#buttonContainerQ5 .button');
     
+        console.log("Toggling visibility for Q4 and Q5 based on Q2 selection:");
+    
         // Toggle visibility for Q4
         q4Buttons.forEach((button) => {
             const correspondingLabel = button.textContent;
+            const selectedArrayQ4 = selectedNames.Q4;
+    
+            console.log(`Checking visibility for Q4 button: ${correspondingLabel}`);
+    
             if (q2SelectedLabels.includes(correspondingLabel)) {
-                button.style.visibility = 'hidden'; // Hide but leave space
+                button.style.visibility = 'hidden';
+                console.log(`${correspondingLabel} in Q2, hiding button`);
+    
+                // Remove from Q4 selection if it becomes hidden
+                const index = selectedArrayQ4.indexOf(correspondingLabel);
+                if (index > -1) {
+                    selectedArrayQ4.splice(index, 1);
+                    console.log(`${correspondingLabel} removed from Q4 selection`);
+                    updateSelectedDisplay('Q4');
+                }
             } else {
-                button.style.visibility = 'visible'; // Make visible again
+                button.style.visibility = 'visible';
+                console.log(`${correspondingLabel} not in Q2, showing button`);
             }
         });
     
         // Toggle visibility for Q5
         q5Buttons.forEach((button) => {
             const correspondingLabel = button.textContent;
+            const selectedArrayQ5 = selectedNames.Q5;
+    
+            console.log(`Checking visibility for Q5 button: ${correspondingLabel}`);
+    
             if (q2SelectedLabels.includes(correspondingLabel)) {
-                button.style.visibility = 'hidden'; // Hide but leave space
+                button.style.visibility = 'hidden';
+                console.log(`${correspondingLabel} in Q2, hiding button`);
+    
+                // Remove from Q5 selection if it becomes hidden
+                const index = selectedArrayQ5.indexOf(correspondingLabel);
+                if (index > -1) {
+                    selectedArrayQ5.splice(index, 1);
+                    console.log(`${correspondingLabel} removed from Q5 selection`);
+                    updateSelectedDisplay('Q5');
+                }
             } else {
-                button.style.visibility = 'visible'; // Make visible again
+                button.style.visibility = 'visible';
+                console.log(`${correspondingLabel} not in Q2, showing button`);
             }
         });
     }
     
-
     function toggleQ6Q8Visibility() {
         const q3SelectedLabels = selectedNames.Q3;
         const q6Buttons = document.querySelectorAll('#buttonContainerQ6 .button');
         const q7Buttons = document.querySelectorAll('#buttonContainerQ7 .button');
         const q8Buttons = document.querySelectorAll('#buttonContainerQ8 .button');
     
+        console.log("Toggling visibility for Q6, Q7, Q8 based on Q3 selection:");
+    
         // Toggle visibility for Q6
         q6Buttons.forEach((button) => {
             const correspondingLabel = button.textContent;
+            const selectedArrayQ6 = selectedNames.Q6;
+    
+            console.log(`Checking visibility for Q6 button: ${correspondingLabel}`);
+    
             if (q3SelectedLabels.includes(correspondingLabel)) {
-                button.style.visibility = 'hidden'; // Hide but leave space
+                button.style.visibility = 'hidden';
+                console.log(`${correspondingLabel} in Q3, hiding button`);
+    
+                // Remove from Q6 selection if it becomes hidden
+                const index = selectedArrayQ6.indexOf(correspondingLabel);
+                if (index > -1) {
+                    selectedArrayQ6.splice(index, 1);
+                    console.log(`${correspondingLabel} removed from Q6 selection`);
+                    updateSelectedDisplay('Q6');
+                }
             } else {
-                button.style.visibility = 'visible'; // Make visible again
+                button.style.visibility = 'visible';
+                console.log(`${correspondingLabel} not in Q3, showing button`);
             }
         });
     
         // Toggle visibility for Q7
         q7Buttons.forEach((button) => {
             const correspondingLabel = button.textContent;
+            const selectedArrayQ7 = selectedNames.Q7;
+    
+            console.log(`Checking visibility for Q7 button: ${correspondingLabel}`);
+    
             if (q3SelectedLabels.includes(correspondingLabel)) {
-                button.style.visibility = 'hidden'; // Hide but leave space
+                button.style.visibility = 'hidden';
+                console.log(`${correspondingLabel} in Q3, hiding button`);
+    
+                // Remove from Q7 selection if it becomes hidden
+                const index = selectedArrayQ7.indexOf(correspondingLabel);
+                if (index > -1) {
+                    selectedArrayQ7.splice(index, 1);
+                    console.log(`${correspondingLabel} removed from Q7 selection`);
+                    updateSelectedDisplay('Q7');
+                }
             } else {
-                button.style.visibility = 'visible'; // Make visible again
+                button.style.visibility = 'visible';
+                console.log(`${correspondingLabel} not in Q3, showing button`);
             }
         });
     
         // Toggle visibility for Q8
         q8Buttons.forEach((button) => {
             const correspondingLabel = button.textContent;
+            const selectedArrayQ8 = selectedNames.Q8;
+    
+            console.log(`Checking visibility for Q8 button: ${correspondingLabel}`);
+    
             if (q3SelectedLabels.includes(correspondingLabel)) {
-                button.style.visibility = 'hidden'; // Hide but leave space
+                button.style.visibility = 'hidden';
+                console.log(`${correspondingLabel} in Q3, hiding button`);
+    
+                // Remove from Q8 selection if it becomes hidden
+                const index = selectedArrayQ8.indexOf(correspondingLabel);
+                if (index > -1) {
+                    selectedArrayQ8.splice(index, 1);
+                    console.log(`${correspondingLabel} removed from Q8 selection`);
+                    updateSelectedDisplay('Q8');
+                }
             } else {
-                button.style.visibility = 'visible'; // Make visible again
+                button.style.visibility = 'visible';
+                console.log(`${correspondingLabel} not in Q3, showing button`);
             }
         });
     }
     
+    function updateSelectedDisplay(question) {
+        // Update the selector to use the pattern 'selectedButtons' followed by the question number
+        const selectedDisplay = document.querySelector(`#selectedButtons${question}`);
+        
+        // Check if the element exists before trying to set textContent
+        if (selectedDisplay) {
+            const selectedArray = selectedNames[question];
+            
+            // Debugging the selected array
+            console.log(`Updating display for ${question}:`, selectedArray);
+            
+            // Check if array is empty, if so display a default message
+            if (selectedArray.length === 0) {
+                selectedDisplay.textContent = 'No items selected';
+            } else {
+                selectedDisplay.textContent = selectedArray.join(' / ');
+            }
+        } else {
+            // Log if the element was not found
+            console.log(`Element #selectedButtons${question} not found`);
+        }
+    }
+            
 
     ageGroupRadios.forEach(radio => {
         radio.addEventListener('change', () => {
