@@ -196,7 +196,7 @@
       </div>
       <!--tab2 DOM-->
       <div class="tab-pane fade" id="tab2">
-        <h3>Q4</h3>
+        <h3>Carries</h3>
         <table id="tableQ4">
             <thead>
                 <tr>
@@ -209,7 +209,7 @@
                 <!-- Rows for Table 1 will be dynamically added here -->
             </tbody>
         </table>
-        <h3>Q5</h3>
+        <h3>EH</h3>
         <table id="tableQ5">
             <thead>
                 <tr>
@@ -222,7 +222,7 @@
                 <!-- Rows for Table 2 will be dynamically added here -->
             </tbody>
         </table>
-        <h3>Q6</h3>
+        <h3>ABS</h3>
         <table id="tableQ6">
             <thead>
                 <tr>
@@ -236,7 +236,7 @@
             </tbody>
         </table>
         
-        <h3>Q7</h3>
+        <h3>PER</h3>
         <table id="tableQ7">
             <thead>
                 <tr>
@@ -250,7 +250,7 @@
             </tbody>
         </table>
 
-        <h3>Q8</h3>
+        <h3>DC</h3>
         <table id="tableQ8">
             <thead>
                 <tr>
@@ -572,8 +572,8 @@
         // Clear existing rows except the header
         table.innerHTML = `
             <tr>
-                <th>Names</th>
-                <th>Size</th>
+                <th>Tooth</th>
+                <th>Size and location</th>
                 <th>Grade</th>
             </tr>
         `;
@@ -592,7 +592,7 @@
     
             const gradeCell = document.createElement('td');
             const gradeSelect = document.createElement('select');
-            ['A', 'B', 'C'].forEach((grade) => {
+            ['GradeI', 'GradeII', 'GradeIII'].forEach((grade) => {
                 const option = document.createElement('option');
                 option.value = grade;
                 option.textContent = grade;
@@ -642,6 +642,11 @@
             renderButtons(buttonContainerQ6, selectedGroup, selectedButtonsQ6, 'Q6');
             renderButtons(buttonContainerQ7, selectedGroup, selectedButtonsQ7, 'Q7');
             renderButtons(buttonContainerQ8, selectedGroup, selectedButtonsQ8, 'Q8');
+            addTable('Q4', selectedNames['Q4']);
+            addTable('Q5', selectedNames['Q5']);
+            addTable('Q6', selectedNames['Q6']);
+            addTable('Q7', selectedNames['Q7']);
+            addTable('Q8', selectedNames['Q8']);
         });
     });
 
