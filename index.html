@@ -87,7 +87,28 @@
     .adult-buttons { grid-template-columns: repeat(16, 2fr); }
     .teenager-buttons { grid-template-columns: repeat(16, 4fr); }
     .hidden {
-        display: none !important;
+        display: none !important;    
+     
+    }
+    table {
+        width: 80vh;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+        margin: 0 auto; /* Centers the table */
+    }
+    th, td {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: center;
+    }
+    th {
+        background-color: #f4f4f4;
+    }
+    .hidden-row {
+        display: none;
+    }
+    .button-group {
+        margin-bottom: 20px;
     }
   </style>
 </head>
@@ -173,9 +194,76 @@
             <p id="selectedButtonsQ8"></p> <!-- Display selected buttons -->
         </div>   
       </div>
+      <!--tab2 DOM-->
       <div class="tab-pane fade" id="tab2">
-        <h3>About</h3>
-        <p>This is the About section. You can provide information about your company, team, or background.</p>
+        <h3>Q4</h3>
+        <table id="tableQ4">
+            <thead>
+                <tr>
+                    <th>Tooth</th>
+                    <th>Size and location</th>
+                    <th>Grade</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows for Table 1 will be dynamically added here -->
+            </tbody>
+        </table>
+        <h3>Q5</h3>
+        <table id="tableQ5">
+            <thead>
+                <tr>
+                    <th>Tooth</th>
+                    <th>Size and location</th>
+                    <th>Grade</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows for Table 2 will be dynamically added here -->
+            </tbody>
+        </table>
+        <h3>Q6</h3>
+        <table id="tableQ6">
+            <thead>
+                <tr>
+                    <th>Tooth</th>
+                    <th>Size and location</th>
+                    <th>Grade</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows for Table 3 will be dynamically added here -->
+            </tbody>
+        </table>
+        
+        <h3>Q7</h3>
+        <table id="tableQ7">
+            <thead>
+                <tr>
+                    <th>Tooth</th>
+                    <th>Size and location</th>
+                    <th>Grade</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows for Table 4 will be dynamically added here -->
+            </tbody>
+        </table>
+
+        <h3>Q8</h3>
+        <table id="tableQ8">
+            <thead>
+                <tr>
+                    <th>Tooth</th>
+                    <th>Size and location</th>
+                    <th>Grade</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows for Table 5 will be dynamically added here -->
+            </tbody>
+        </table>
+
       </div>
       <div class="tab-pane fade" id="tab3">
         <h3>Services</h3>
@@ -285,11 +373,21 @@
         // Call function to update visibility based on Q2 (affecting Q4 and Q5)
         if (question === 'Q2') {
             toggleQ4Q5Visibility();
+            addTable('Q4', selectedNames['Q4']);
+            addTable('Q5', selectedNames['Q5']);
         }
     
         // Call function to update visibility based on Q3 (affecting Q6, Q7, Q8)
         if (question === 'Q3') {
             toggleQ6Q8Visibility();
+            addTable('Q6', selectedNames['Q6']);
+            addTable('Q7', selectedNames['Q7']);
+            addTable('Q8', selectedNames['Q8']);
+        }
+
+        // Handle table creation for Q4-Q8
+        if (['Q4', 'Q5', 'Q6', 'Q7', 'Q8'].includes(question)) {
+            addTable(question, selectedArray);
         }
     }
     
@@ -452,7 +550,64 @@
             console.log(`Element #selectedButtons${question} not found`);
         }
     }
-            
+    
+    function addTable(question, selectedArray) {
+        const tableId = `table${question}`;
+        let table = document.getElementById(tableId);
+    
+        // If table does not exist, create it
+        if (!table) {
+            table = document.createElement('table');
+            table.id = tableId;
+            table.innerHTML = `
+                <tr>
+                    <th>Names</th>
+                    <th>Size</th>
+                    <th>Grade</th>
+                </tr>
+            `;
+            document.body.appendChild(table); // Append table to the document (adjust as needed)
+        }
+    
+        // Clear existing rows except the header
+        table.innerHTML = `
+            <tr>
+                <th>Names</th>
+                <th>Size</th>
+                <th>Grade</th>
+            </tr>
+        `;
+    
+        // Add rows for each selected button
+        selectedArray.forEach((name) => {
+            const row = document.createElement('tr');
+    
+            const nameCell = document.createElement('td');
+            nameCell.textContent = name;
+    
+            const sizeCell = document.createElement('td');
+            const sizeInput = document.createElement('input');
+            sizeInput.type = 'text';
+            sizeCell.appendChild(sizeInput);
+    
+            const gradeCell = document.createElement('td');
+            const gradeSelect = document.createElement('select');
+            ['A', 'B', 'C'].forEach((grade) => {
+                const option = document.createElement('option');
+                option.value = grade;
+                option.textContent = grade;
+                gradeSelect.appendChild(option);
+            });
+            gradeCell.appendChild(gradeSelect);
+    
+            row.appendChild(nameCell);
+            row.appendChild(sizeCell);
+            row.appendChild(gradeCell);
+    
+            table.appendChild(row);
+        });
+    }
+    
 
     ageGroupRadios.forEach(radio => {
         radio.addEventListener('change', () => {
