@@ -434,6 +434,7 @@
             addTable('Q4', selectedNames['Q4']);
             addTable('Q5', selectedNames['Q5']);
             // tab3 table change handle 
+            presentProblem(selectedNames['Q2'],selectedNames['Q3']);
             updateTabletab3(2,selectedNames['Q4'], 'yes');
             updateTabletab3(6,selectedNames['Q5'], 'yes');
         }
@@ -444,7 +445,8 @@
             addTable('Q6', selectedNames['Q6']);
             addTable('Q7', selectedNames['Q7']);
             addTable('Q8', selectedNames['Q8']);
-            // tab3 table change handle 
+            // tab3 table change handle
+            presentProblem(selectedNames['Q2'],selectedNames['Q3']); 
             updateTabletab3(9,selectedNames['Q6'], 'yes');
             updateTabletab3(12,selectedNames['Q7'], 'yes');
             updateTabletab3(15,selectedNames['Q8'], 'yes');
@@ -804,7 +806,95 @@
         
         console.log(`Row ${row} updated.`);
     }
-
+    
+    // present problem function
+    function presentProblem(selectedNamesQ2, selectedNamesQ3) {
+        // Log input arrays
+        console.log("Selected Q2 Names: ", selectedNamesQ2);
+        console.log("Selected Q3 Names: ", selectedNamesQ3);
+    
+        // Get the table and its body
+        const table = document.getElementById('tabletab3');
+        const tableBody = table.querySelector('#tableBody');
+        const tableRow = tableBody.rows[0]; // Row 1 (index 1) will be updated
+        
+        // Get the headers to identify columns
+        const headerCells = document.querySelectorAll('#headerRow th');
+        
+        // Create lists to hold elements for each update type
+        const updateN = []; // Q2 but not in Q3
+        const updateL = []; // Q3 but not in Q2
+        const updateU = []; // In both Q2 and Q3
+        const updateP = []; // Not in Q2 and not in Q3
+    
+        // Compare elements for Q2 not in Q3, Q3 not in Q2, and in both Q2 and Q3
+        selectedNamesQ2.forEach((element) => {
+            if (!selectedNamesQ3.includes(element)) {
+                // Element is in Q2 but not in Q3
+                console.log(`Element '${element}' is in Q2 but not in Q3. Adding to update 'N'`);
+                updateN.push(element);
+            } else {
+                // Element is in both Q2 and Q3
+                console.log(`Element '${element}' is in both Q2 and Q3. Adding to update 'U'`);
+                updateU.push(element);
+            }
+        });
+    
+        selectedNamesQ3.forEach((element) => {
+            if (!selectedNamesQ2.includes(element)) {
+                // Element is in Q3 but not in Q2
+                console.log(`Element '${element}' is in Q3 but not in Q2. Adding to update 'L'`);
+                updateL.push(element);
+            }
+        });
+    
+        // Find elements that are in neither Q2 nor Q3 (update 'P')
+        const allElements = [...selectedNamesQ2, ...selectedNamesQ3];
+        const allHeaders = Array.from(headerCells).map(cell => cell.textContent);
+        allHeaders.forEach((header, index) => {
+            if (!allElements.includes(header) && index !== 0) { // Skip the first column (index 0)
+                // If the header name is not in either Q2 or Q3 and it's not the first column, we replace with 'P'
+                updateP.push(header);
+            }
+        });
+    
+        // Update row 1 content for each group of elements
+        function updateRowContent(updateList, updateType) {
+            updateList.forEach((element) => {
+                const columnIndex = Array.from(headerCells).findIndex(header => header.textContent === element);
+                if (columnIndex !== -1 && columnIndex !== 0) { // Avoid updating the first column
+                    const targetCell = tableRow.cells[columnIndex];
+                    if (targetCell) {
+                        console.log(`Updating row 1, column '${element}' with '${updateType}'`);
+                        targetCell.textContent = updateType; // Replace with the update type (N, L, U, or P)
+                    } else {
+                        console.log(`Target cell for column '${element}' not found.`);
+                    }
+                }
+            });
+        }
+    
+        // Update all elements in one go for each type
+        if (updateN.length > 0) {
+            console.log(`Updating Q2-only elements: ${updateN.join(', ')}`);
+            updateRowContent(updateN, 'N');
+        }
+        if (updateL.length > 0) {
+            console.log(`Updating Q3-only elements: ${updateL.join(', ')}`);
+            updateRowContent(updateL, 'L');
+        }
+        if (updateU.length > 0) {
+            console.log(`Updating elements in both Q2 and Q3: ${updateU.join(', ')}`);
+            updateRowContent(updateU, 'U');
+        }
+        if (updateP.length > 0) {
+            console.log(`Updating elements not in Q2 or Q3: ${updateP.join(', ')}`);
+            updateRowContent(updateP, 'P');
+        }
+    }
+          
+    
+    // Event listener for age group radio buttons
     ageGroupRadios.forEach(radio => {
         radio.addEventListener('change', () => {
             const selectedGroup = radio.value;
