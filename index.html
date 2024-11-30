@@ -110,6 +110,31 @@
     .button-group {
         margin-bottom: 20px;
     }
+    .table-container {
+        position: fixed;
+        top: 30vh;
+        bottom: 10vh;
+        left: 16vh;
+        right: 16vh;
+        overflow: auto;
+        background-color: #fff;
+    }
+
+    #tabletab3 {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    #tabletab3 th, #tabletab3 td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+        min-width: 15vh; /* Adjust for wider cells */
+    }
+
+    #tabletab3 th {
+        background-color: #f4f4f4;
+    }
   </style>
 </head>
 <body>
@@ -266,8 +291,19 @@
 
       </div>
       <div class="tab-pane fade" id="tab3">
-        <h3>Services</h3>
-        <p>In the Services section, you can outline the services or products you offer to your customers.</p>
+        <h3>Check</h3>
+        <p>Check what you got so far before anything further</p>
+        <div class="table-container">
+            <table id="tabletab3">
+                <thead>
+                    <tr id="headerRow">
+                        <th>Row Title</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                </tbody>
+            </table>
+        </div>
       </div>
       <div class="tab-pane fade" id="tab4">
         <h3>Portfolio</h3>
@@ -291,8 +327,8 @@
   <script>
     const buttonTemplates = {
         adult: ['U-R-I1','U-R-I2','U-R-C','U-R-P1','U-R-P2','U-R-M1','U-R-M2', 'U-R-M3','U-L-I1','U-L-I2','U-L-C','U-L-P1','U-L-P2','U-L-M1','U-L-M2', 'U-L-M3','L-R-I1','L-R-I2','L-R-C','L-R-P1','L-R-P2','L-R-M1','L-R-M2', 'L-R-M3','L-L-I1','L-L-I2','L-L-C','L-L-P1','L-L-P2','L-L-M1','L-L-M2', 'L-L-M3'], 
-        child: [null,null,null, 'U-R-I1','U-R-I2','U-R-C','U-R-P1','U-R-P2','U-L-I1','U-L-I2','U-L-C','U-L-P1','U-L-P2', null,null, null,null,null,null, 'L-R-I1','L-R-I2','L-R-C','L-R-P1','L-R-P2','L-L-I1','L-L-I2','L-L-C','L-L-P1','L-L-P2', null,null, null],
-        teenager: ['U-R-I1','U-R-I2','U-R-C','U-R-P1','U-R-P2','U-R-M1','U-R-M2', 'U-R-M3','U-L-I1','U-L-I2','U-L-C','U-L-P1','U-L-P2','U-L-M1','U-L-M2', 'U-L-M3',null,null,null, 'U-R-I1','U-R-I2','U-R-C','U-R-P1','U-R-P2','U-L-I1','U-L-I2','U-L-C','U-L-P1','U-L-P2', null,null, null,null,null,null, 'L-R-I1','L-R-I2','L-R-C','L-R-P1','L-R-P2','L-L-I1','L-L-I2','L-L-C','L-L-P1','L-L-P2', null,null, null,'L-R-I1','L-R-I2','L-R-C','L-R-P1','L-R-P2','L-R-M1','L-R-M2', 'L-R-M3','L-L-I1','L-L-I2','L-L-C','L-L-P1','L-L-P2','L-L-M1','L-L-M2', 'L-L-M3']
+        child: [null,null,null, 'CU-R-I1','CU-R-I2','CU-R-C','CU-R-P1','CU-R-P2','CU-L-I1','CU-L-I2','CU-L-C','CU-L-P1','CU-L-P2', null,null, null,null,null,null, 'CL-R-I1','CL-R-I2','CL-R-C','CL-R-P1','CL-R-P2','CL-L-I1','CL-L-I2','CL-L-C','CL-L-P1','CL-L-P2', null,null, null],
+        teenager: ['U-R-I1','U-R-I2','U-R-C','U-R-P1','U-R-P2','U-R-M1','U-R-M2', 'U-R-M3','U-L-I1','U-L-I2','U-L-C','U-L-P1','U-L-P2','U-L-M1','U-L-M2', 'U-L-M3',null,null,null, 'CU-R-I1','CU-R-I2','CU-R-C','CU-R-P1','CU-R-P2','CU-L-I1','CU-L-I2','CU-L-C','CU-L-P1','CU-L-P2', null,null, null,null,null,null, 'CL-R-I1','CL-R-I2','CL-R-C','CL-R-P1','CL-R-P2','CL-L-I1','CL-L-I2','CL-L-C','CL-L-P1','CL-L-P2', null,null, null,'L-R-I1','L-R-I2','L-R-C','L-R-P1','L-R-P2','L-R-M1','L-R-M2', 'L-R-M3','L-L-I1','L-L-I2','L-L-C','L-L-P1','L-L-P2','L-L-M1','L-L-M2', 'L-L-M3']
     };
 
     const ageGroupRadios = document.querySelectorAll('input[name="ageGroup"]');
@@ -319,6 +355,28 @@
     const selectedButtonsQ8 = document.getElementById('selectedButtonsQ8');
     // Store clicked button names
     const selectedNames = { Q2: [], Q3: [], Q4: [], Q5: [], Q6: [], Q7: [], Q8: [] };
+    //tab3 table gerenation
+    const headerRow = document.getElementById('headerRow');
+    const tableBody = document.getElementById('tableBody');
+    const rowDefinitions = [
+    { title: 'Present ?', fill: () => 'P' },
+    { title: '', fill: () => '' },
+    { title: 'Carries Present', fill: () => 'no' },
+    { title: 'Carries Location', fill: () => '/' },
+    { title: 'Carries Grade', fill: () => '/' },
+    { title: '', fill: () => '' },
+    { title: 'EH Present', fill: () => 'no' },
+    { title: 'EH Type', fill: () => '/' },
+    { title: '', fill: () => '' },
+    { title: 'ABS Present', fill: () => 'no' },
+    { title: 'ABS Type', fill: () => '/' },
+    { title: '', fill: () => '' },
+    { title: 'PER Present', fill: () => 'no' },
+    { title: 'PER Grade', fill: () => '/' },
+    { title: '', fill: () => '' },
+    { title: 'DC Present', fill: () => 'no' },
+    { title: 'DC Type', fill: () => '/' },
+    ];
 
     function renderButtons(container, ageGroup, selectedDisplay, question) {
         container.innerHTML = '';
@@ -375,6 +433,9 @@
             toggleQ4Q5Visibility();
             addTable('Q4', selectedNames['Q4']);
             addTable('Q5', selectedNames['Q5']);
+            // tab3 table change handle 
+            updateTabletab3(2,selectedNames['Q4'], 'yes');
+            updateTabletab3(6,selectedNames['Q5'], 'yes');
         }
     
         // Call function to update visibility based on Q3 (affecting Q6, Q7, Q8)
@@ -383,12 +444,40 @@
             addTable('Q6', selectedNames['Q6']);
             addTable('Q7', selectedNames['Q7']);
             addTable('Q8', selectedNames['Q8']);
+            // tab3 table change handle 
+            updateTabletab3(9,selectedNames['Q6'], 'yes');
+            updateTabletab3(12,selectedNames['Q7'], 'yes');
+            updateTabletab3(15,selectedNames['Q8'], 'yes');
+    
         }
 
-        // Handle table creation for Q4-Q8
+        // Handle table tab2 creation for Q4-Q8
         if (['Q4', 'Q5', 'Q6', 'Q7', 'Q8'].includes(question)) {
             addTable(question, selectedArray);
         }
+
+        // tab3 table change handle 
+        if (question === 'Q4') {
+            updateTabletab3(2,selectedNames['Q4'], 'yes');
+        }
+        
+        if (question === 'Q5') {
+            updateTabletab3(6,selectedNames['Q5'], 'yes');
+        }
+
+        if (question === 'Q6') {
+            updateTabletab3(9,selectedNames['Q6'], 'yes');
+        }
+
+        if (question === 'Q7') {
+            updateTabletab3(12,selectedNames['Q7'], 'yes');
+        }
+
+        if (question === 'Q8') {
+            updateTabletab3(15,selectedNames['Q8'], 'yes');
+        }
+        
+
     }
     
     function toggleQ4Q5Visibility() {
@@ -608,6 +697,113 @@
         });
     }
     
+    //tab3 table generation
+    function addTabletab3(selectedGroup) {
+        headerRow.innerHTML = '<th>Check table</th>';
+        tableBody.innerHTML = '';
+
+        const template = buttonTemplates[selectedGroup];
+        if (!template) return;
+
+        template.forEach((col) => {
+            if (col !== null) {
+                const th = document.createElement('th');
+                th.textContent = col;
+                headerRow.appendChild(th);
+            }
+        });
+
+        rowDefinitions.forEach((rowDef) => {
+            const tr = document.createElement('tr');
+
+            const rowTitleCell = document.createElement('td');
+            rowTitleCell.textContent = rowDef.title;
+            tr.appendChild(rowTitleCell);
+
+            template.forEach((col) => {
+                if (col !== null) {
+                    const td = document.createElement('td');
+                    td.textContent = rowDef.fill(col);
+                    tr.appendChild(td);
+                }
+            });
+
+            tableBody.appendChild(tr);
+        });
+    }
+
+    let previousSelectedNames = {};
+
+    function updateTabletab3(row, selectedNames, replaceContent) {
+        console.log(`Updating row ${row} with new content '${replaceContent}' for columns: ${selectedNames.join(', ')}`);
+        
+        // Get the table and its body
+        const table = document.getElementById('tabletab3');
+        const tableBody = table.querySelector('#tableBody');
+        
+        // Get the specific row based on the index
+        const tableRow = tableBody.rows[row];
+        if (!tableRow) {
+            console.log(`Row ${row} not found in table.`);
+            return;
+        }
+        
+        console.log(`Row ${row} found:`, tableRow);
+        
+        // Get the headers to identify columns
+        const headerCells = document.querySelectorAll('#headerRow th');
+        console.log(`Headers: ${Array.from(headerCells).map(th => th.textContent).join(', ')}`);
+        
+        // If previousSelectedNames exists for the current row, compare with selectedNames to reset missing columns
+        if (previousSelectedNames[row]) {
+            previousSelectedNames[row].forEach((prevName) => {
+                if (!selectedNames.includes(prevName)) {
+                    // Reset content for this column
+                    const columnIndex = Array.from(headerCells).findIndex(header => header.textContent === prevName);
+                    if (columnIndex !== -1) {
+                        const targetCell = tableRow.cells[columnIndex];
+                        if (targetCell) {
+                            // Find the original value from rowDefinitions (you may need to adjust this part)
+                            const originalValue = rowDefinitions[row].fill(prevName);
+                            console.log(`Resetting content in column '${prevName}' (row ${row}) to original value: ${originalValue}`);
+                            targetCell.textContent = originalValue;
+                        }
+                    }
+                }
+            });
+        }
+    
+        // Loop through the selected column names (from selectedNames) and update the corresponding columns
+        selectedNames.forEach((selectedName) => {
+            console.log(`Looking for column: ${selectedName}`);
+            
+            // Find the index of the column based on the header name
+            const columnIndex = Array.from(headerCells).findIndex(header => header.textContent === selectedName);
+            
+            if (columnIndex !== -1) {
+                console.log(`Column '${selectedName}' found at index ${columnIndex}`);
+                
+                // Get the corresponding table cell in the specified row and replace its content
+                const targetCell = tableRow.cells[columnIndex];
+                if (targetCell) {
+                    console.log(`Replacing content in cell at row ${row}, column '${selectedName}'`);
+                    targetCell.textContent = replaceContent;
+                } else {
+                    console.log(`Target cell at row ${row}, column ${columnIndex} not found.`);
+                }
+            } else {
+                console.log(`Column '${selectedName}' not found in headers.`);
+            }
+        });
+        
+        // Update the previous selected names for the current row
+        previousSelectedNames[row] = selectedNames.slice();
+        
+        // Debug message: show the entire previous selected names for this row
+        console.log(`Previous selected names for row ${row}: ${previousSelectedNames[row].join(', ')}`);
+        
+        console.log(`Row ${row} updated.`);
+    }
 
     ageGroupRadios.forEach(radio => {
         radio.addEventListener('change', () => {
@@ -647,6 +843,8 @@
             addTable('Q6', selectedNames['Q6']);
             addTable('Q7', selectedNames['Q7']);
             addTable('Q8', selectedNames['Q8']);
+            addTabletab3(selectedGroup);
+            console.log(`Selected age group: ${selectedGroup}`);
         });
     });
 
