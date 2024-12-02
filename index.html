@@ -461,22 +461,28 @@
         // tab3 table change handle 
         if (question === 'Q4') {
             updateTabletab3(2,selectedNames['Q4'], 'yes');
+            tab2totab3("tableQ4", 4, "size");
+            tab2totab3("tableQ4", 5, "grade");
         }
         
         if (question === 'Q5') {
             updateTabletab3(6,selectedNames['Q5'], 'yes');
+            tab2totab3("tableQ5", 8, "grade");
         }
 
         if (question === 'Q6') {
             updateTabletab3(9,selectedNames['Q6'], 'yes');
+            tab2totab3("tableQ6", 11, "grade");
         }
 
         if (question === 'Q7') {
             updateTabletab3(12,selectedNames['Q7'], 'yes');
+            tab2totab3("tableQ7", 14, "grade");
         }
 
         if (question === 'Q8') {
             updateTabletab3(15,selectedNames['Q8'], 'yes');
+            tab2totab3("tableQ8", 17, "grade");
         }
         
 
@@ -683,7 +689,7 @@
     
             const gradeCell = document.createElement('td');
             const gradeSelect = document.createElement('select');
-            ['GradeI', 'GradeII', 'GradeIII'].forEach((grade) => {
+            ['/','GradeI', 'GradeII', 'GradeIII'].forEach((grade) => {
                 const option = document.createElement('option');
                 option.value = grade;
                 option.textContent = grade;
@@ -893,7 +899,74 @@
         }
     }
           
+    // tab2 content to tab3 handle function
+    function tab2totab3(tableId, rowNumber, className) {
+        const tab2Table = document.getElementById(tableId);
+        const tab3Table = document.getElementById("tabletab3");
     
+        if (!tab2Table || !tab3Table) {
+            console.error("One or both tables are not found.");
+            return;
+        }
+    
+        const updateContent = () => {
+            const tab2Rows = tab2Table.querySelectorAll("tr");
+            const tab3Rows = tab3Table.querySelectorAll("tbody tr");
+    
+            // Ensure rowNumber is valid
+            if (rowNumber < 1 || rowNumber > tab3Rows.length) {
+                console.error(`Row number ${rowNumber} is out of range in Tab3.`);
+                return;
+            }
+    
+            const selectedRow = tab3Rows[rowNumber - 1];
+            if (!selectedRow) {
+                console.error(`No row found at row number ${rowNumber} in Tab3.`);
+                return;
+            }
+    
+            // Map Tab3 headers to their column indices
+            const tab3Headers = Array.from(tab3Table.querySelectorAll("thead th"));
+            const tab3HeaderMap = tab3Headers.reduce((map, th, index) => {
+                map[th.textContent.trim()] = index;
+                return map;
+            }, {});
+    
+            // Iterate through Tab2 rows and update Tab3 accordingly
+            tab2Rows.forEach((tab2Row, index) => {
+                if (index === 0) return; // Skip header
+    
+                const tab2Cells = tab2Row.querySelectorAll("td");
+                if (tab2Cells.length === 3) {
+                    const name = tab2Cells[0].textContent;
+                    const inputElement = className === "size" 
+                        ? tab2Cells[1].querySelector("input") 
+                        : tab2Cells[2].querySelector("select");
+    
+                    if (!inputElement) return;
+    
+                    inputElement.addEventListener(className === "size" ? "input" : "change", () => {
+                        const value = inputElement.value;
+    
+                        // Find the corresponding column in Tab3
+                        const colIndex = tab3HeaderMap[name];
+                        if (colIndex !== undefined) {
+                            const targetCell = selectedRow.children[colIndex];
+                            if (targetCell) {
+                                targetCell.textContent = value;
+                                console.log(`Updated Tab3 [Row ${rowNumber}, Column '${name}'] to: ${value}`);
+                            }
+                        }
+                    });
+                }
+            });
+        };
+    
+        // Initial content update and attach event listeners
+        updateContent();
+    }
+       
+
     // Event listener for age group radio buttons
     ageGroupRadios.forEach(radio => {
         radio.addEventListener('change', () => {
