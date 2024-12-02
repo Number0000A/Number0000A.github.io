@@ -135,6 +135,31 @@
     #tabletab3 th {
         background-color: #f4f4f4;
     }
+
+    #printButton {
+        position: fixed; /* Position relative to viewport */
+        bottom: 0.5vh; /* Adjust placement to avoid overlap */
+        right: 16vh; /* Align with the table container */
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: filter 0.3s ease; /* Smooth transition for brightness */
+        z-index: 1000; /* Ensure it appears above other elements */
+    }
+
+    #printButton:active {
+        filter: brightness(70%);
+    }
+
+    #printButton:hover {
+        background-color: #2980b9;
+    }
+
+
   </style>
 </head>
 <body>
@@ -297,13 +322,14 @@
             <table id="tabletab3">
                 <thead>
                     <tr id="headerRow">
-                        <th>Row Title</th>
+                        <th>Check table</th>
                     </tr>
                 </thead>
                 <tbody id="tableBody">
                 </tbody>
             </table>
         </div>
+        <button id="printButton">Save as csv</button>
       </div>
       <div class="tab-pane fade" id="tab4">
         <h3>Portfolio</h3>
@@ -323,6 +349,10 @@
   <!-- jQuery, Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+
+
 
   <script>
     const buttonTemplates = {
@@ -713,7 +743,7 @@
     
     //tab3 table generation
     function addTabletab3(selectedGroup) {
-        headerRow.innerHTML = '<th>Check table</th>';
+        headerRow.innerHTML = '<th>Tooth</th>';
         tableBody.innerHTML = '';
 
         const template = buttonTemplates[selectedGroup];
@@ -971,7 +1001,42 @@
         // Initial content update and attach event listeners
         updateContent();
     }
-       
+      
+    // tab3 table to PDF function
+    function exportTableToCSV(tableId, fileName) {
+        const table = document.getElementById(tableId);
+        if (!table) {
+            console.error(`Table with ID '${tableId}' not found.`);
+            return;
+        }
+    
+        let csvContent = "";
+        const rows = table.querySelectorAll("tr");
+    
+        rows.forEach((row) => {
+            const cells = row.querySelectorAll("th, td");
+            const rowContent = Array.from(cells)
+                .map((cell) => `"${cell.textContent.trim()}"`) // Wrap each cell content in quotes
+                .join(","); // Join cells with commas
+            csvContent += rowContent + "\n"; // Add the row and a newline
+        });
+    
+        // Create a Blob with the CSV content
+        const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = `${fileName}.csv`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+    
+    // Add event listener to the button
+    document.getElementById("printButton").addEventListener("click", function () {
+        exportTableToCSV("tabletab3", "Tab3_Table");
+    });
+    
+    
 
     // Event listener for age group radio buttons
     ageGroupRadios.forEach(radio => {
