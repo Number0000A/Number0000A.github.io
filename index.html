@@ -202,7 +202,7 @@
         <label><input type="radio" name="ageGroup" value="child"> Deciduous tooth</label>
         <label><input type="radio" name="ageGroup" value="adult"> Permanent tooth</label>
         <label><input type="radio" name="ageGroup" value="teenager"> Deciduous and permanent tooth</label>
-
+        <h5>(Deciduous tooth with prefix D ,for example 'D-U-R-I1'; Permanent tooth are prefix free, for example 'U-R-I1')</h5>
         <!-- Question 2 -->
         <div id="question2" >
             <h4>Question 2: Select Missing tooth</h4>
@@ -366,8 +366,8 @@
   <script>
     const buttonTemplates = {
         adult: ['U-R-I1','U-R-I2','U-R-C','U-R-P1','U-R-P2','U-R-M1','U-R-M2', 'U-R-M3','U-L-I1','U-L-I2','U-L-C','U-L-P1','U-L-P2','U-L-M1','U-L-M2', 'U-L-M3','L-R-I1','L-R-I2','L-R-C','L-R-P1','L-R-P2','L-R-M1','L-R-M2', 'L-R-M3','L-L-I1','L-L-I2','L-L-C','L-L-P1','L-L-P2','L-L-M1','L-L-M2', 'L-L-M3'], 
-        child: [null,null,null, 'CU-R-I1','CU-R-I2','CU-R-C','CU-R-P1','CU-R-P2','CU-L-I1','CU-L-I2','CU-L-C','CU-L-P1','CU-L-P2', null,null, null,null,null,null, 'CL-R-I1','CL-R-I2','CL-R-C','CL-R-P1','CL-R-P2','CL-L-I1','CL-L-I2','CL-L-C','CL-L-P1','CL-L-P2', null,null, null],
-        teenager: ['U-R-I1','U-R-I2','U-R-C','U-R-P1','U-R-P2','U-R-M1','U-R-M2', 'U-R-M3','U-L-I1','U-L-I2','U-L-C','U-L-P1','U-L-P2','U-L-M1','U-L-M2', 'U-L-M3',null,null,null, 'CU-R-I1','CU-R-I2','CU-R-C','CU-R-P1','CU-R-P2','CU-L-I1','CU-L-I2','CU-L-C','CU-L-P1','CU-L-P2', null,null, null,null,null,null, 'CL-R-I1','CL-R-I2','CL-R-C','CL-R-P1','CL-R-P2','CL-L-I1','CL-L-I2','CL-L-C','CL-L-P1','CL-L-P2', null,null, null,'L-R-I1','L-R-I2','L-R-C','L-R-P1','L-R-P2','L-R-M1','L-R-M2', 'L-R-M3','L-L-I1','L-L-I2','L-L-C','L-L-P1','L-L-P2','L-L-M1','L-L-M2', 'L-L-M3']
+        child: [null,null,null, 'D-U-R-I1','D-U-R-I2','D-U-R-C','D-U-R-P1','D-U-R-P2','D-U-L-I1','D-U-L-I2','D-U-L-C','D-U-L-P1','D-U-L-P2', null,null, null,null,null,null, 'D-L-R-I1','D-L-R-I2','D-L-R-C','D-L-R-P1','D-L-R-P2','D-L-L-I1','D-L-L-I2','D-L-L-C','D-L-L-P1','D-L-L-P2', null,null, null],
+        teenager: ['U-R-I1','U-R-I2','U-R-C','U-R-P1','U-R-P2','U-R-M1','U-R-M2', 'U-R-M3','U-L-I1','U-L-I2','U-L-C','U-L-P1','U-L-P2','U-L-M1','U-L-M2', 'U-L-M3',null,null,null, 'D-U-R-I1','D-U-R-I2','D-U-R-C','D-U-R-P1','D-U-R-P2','D-U-L-I1','D-U-L-I2','D-U-L-C','D-U-L-P1','D-U-L-P2', null,null, null,null,null,null, 'D-L-R-I1','D-L-R-I2','D-L-R-C','D-L-R-P1','D-L-R-P2','D-L-L-I1','D-L-L-I2','D-L-L-C','D-L-L-P1','D-L-L-P2', null,null, null,'L-R-I1','L-R-I2','L-R-C','L-R-P1','L-R-P2','L-R-M1','L-R-M2', 'L-R-M3','L-L-I1','L-L-I2','L-L-C','L-L-P1','L-L-P2','L-L-M1','L-L-M2', 'L-L-M3']
     };
 
     const ageGroupRadios = document.querySelectorAll('input[name="ageGroup"]');
