@@ -141,6 +141,15 @@
         background-color: #f4f4f4;
     }
 
+    #tabletab4 th {
+        background-color: #f4f4f4;
+    }
+
+    #tabletab4 th, #tabletab4 td {
+        width: 33%;
+        text-align: left;
+      }
+
     #printButton {
         position: fixed; /* Position relative to viewport */
         bottom: 0.5vh; /* Adjust placement to avoid overlap */
@@ -185,8 +194,8 @@
         <li class="active"><a href="#tab1" data-toggle="tab">Tooth condition setup</a></li>
         <li><a href="#tab2" data-toggle="tab">Disease detail input</a></li>
         <li><a href="#tab3" data-toggle="tab">Information checking</a></li>
-        <li><a href="#tab4" data-toggle="tab">Download/Upload</a></li>
-        <li><a href="#tab5" data-toggle="tab">Read & Analysis</a></li>
+        <li><a href="#tab4" data-toggle="tab">Read & Analysis</a></li>
+        <li><a href="#tab5" data-toggle="tab">Download/Upload</a></li>
         <li><a href="#tab6" data-toggle="tab">Contact & Reference</a></li>
       </ul>
     </div>
@@ -202,7 +211,9 @@
         <label><input type="radio" name="ageGroup" value="child"> Deciduous tooth</label>
         <label><input type="radio" name="ageGroup" value="adult"> Permanent tooth</label>
         <label><input type="radio" name="ageGroup" value="teenager"> Deciduous and permanent tooth</label>
+        
         <h5>(Deciduous tooth with prefix D ,for example 'D-U-R-I1'; Permanent tooth are prefix free, for example 'U-R-I1')</h5>
+
         <!-- Question 2 -->
         <div id="question2" >
             <h4>Question 2: Select Missing tooth</h4>
@@ -321,8 +332,7 @@
 
       </div>
       <div class="tab-pane fade" id="tab3">
-        <h3>Check</h3>
-        <p>Check what you got so far before anything further</p>
+        <h3>Check and quick download</h3>
         <div class="table-container">
             <table id="tabletab3">
                 <thead>
@@ -336,10 +346,57 @@
         </div>
         <button id="printButton">Save as csv</button>
       </div>
+      
       <div class="tab-pane fade" id="tab4">
-        <h3>Portfolio</h3>
-        <p>The Portfolio section can showcase your previous projects or work samples to potential clients.</p>
-      </div>
+        <h3> Analysis </h3>
+        <table id="tabletab4" class="table">
+            <thead>
+                <tr>
+                  <th></th>
+                  <th>Permanent teeth</th> <!-- second column -->
+                  <th>Deciduous teeth</th> <!-- third column -->
+                </tr>
+              </thead>
+            <tbody>
+                <tr>
+                <td>No of preserved teeth:</td>
+                <td>0 (0 % to all)</td> <!-- Permenant -->
+                <td>0 (0 % to all)</td> <!-- Deciduous -->
+                </tr>
+                <td>No of teeth with carious lesions(C):</td>
+                <td>0 (0 % to preserved)</td> <!-- Permenant -->
+                <td>0 (0 % to preserved)</td> <!-- Deciduous -->
+                </tr>
+                <tr>
+                <td>No of teeth with Enamel hypoplasia(EH):</td>
+                <td>0 (0 % to preserved)</td> <!-- Permenant -->
+                <td>0 (0 % to preserved)</td> <!-- Deciduous -->
+                </tr>
+                <tr>
+                <td>No of preserved Alveolar Bone:</td>
+                <td>0 (0 % to all)</td> <!-- Permenant -->
+                <td>0 (0 % to all)</td> <!-- Deciduous -->
+                </tr>
+                <tr>
+                <td>No of teeth with periapical lesions(ABS):</td>
+                <td>0 (0 % to preserved)</td> <!-- Permenant -->
+                <td>0 (0 % to preserved)</td> <!-- Deciduous -->
+                </tr>
+                <tr>
+                <td>No of teeth with periapical periodontal diseases (PER):</td>
+                <td>0 (0 % to preserved)</td> <!-- Permenant -->
+                <td>0 (0 % to preserved)</td> <!-- Deciduous -->
+                </tr>
+                <tr>
+                <td>No of teeth with periapical dental calculus(DC):</td>
+                <td>0 (0 % to preserved)</td> <!-- Permenant -->
+                <td>0 (0 % to preserved)</td> <!-- Deciduous -->
+                </tr>
+            </tbody>
+        </table>
+
+       </div>
+          
       <div class="tab-pane fade" id="tab5">
         <h3>Blog</h3>
         <p>In the Blog section, you can add articles, tutorials, or any other blog-style content.</p>
@@ -367,7 +424,13 @@
     const buttonTemplates = {
         adult: ['U-R-I1','U-R-I2','U-R-C','U-R-P1','U-R-P2','U-R-M1','U-R-M2', 'U-R-M3','U-L-I1','U-L-I2','U-L-C','U-L-P1','U-L-P2','U-L-M1','U-L-M2', 'U-L-M3','L-R-I1','L-R-I2','L-R-C','L-R-P1','L-R-P2','L-R-M1','L-R-M2', 'L-R-M3','L-L-I1','L-L-I2','L-L-C','L-L-P1','L-L-P2','L-L-M1','L-L-M2', 'L-L-M3'], 
         child: [null,null,null, 'D-U-R-I1','D-U-R-I2','D-U-R-C','D-U-R-P1','D-U-R-P2','D-U-L-I1','D-U-L-I2','D-U-L-C','D-U-L-P1','D-U-L-P2', null,null, null,null,null,null, 'D-L-R-I1','D-L-R-I2','D-L-R-C','D-L-R-P1','D-L-R-P2','D-L-L-I1','D-L-L-I2','D-L-L-C','D-L-L-P1','D-L-L-P2', null,null, null],
-        teenager: ['U-R-I1','U-R-I2','U-R-C','U-R-P1','U-R-P2','U-R-M1','U-R-M2', 'U-R-M3','U-L-I1','U-L-I2','U-L-C','U-L-P1','U-L-P2','U-L-M1','U-L-M2', 'U-L-M3',null,null,null, 'D-U-R-I1','D-U-R-I2','D-U-R-C','D-U-R-P1','D-U-R-P2','D-U-L-I1','D-U-L-I2','D-U-L-C','D-U-L-P1','D-U-L-P2', null,null, null,null,null,null, 'D-L-R-I1','D-L-R-I2','D-L-R-C','D-L-R-P1','D-L-R-P2','D-L-L-I1','D-L-L-I2','D-L-L-C','D-L-L-P1','D-L-L-P2', null,null, null,'L-R-I1','L-R-I2','L-R-C','L-R-P1','L-R-P2','L-R-M1','L-R-M2', 'L-R-M3','L-L-I1','L-L-I2','L-L-C','L-L-P1','L-L-P2','L-L-M1','L-L-M2', 'L-L-M3']
+        teenager: [null,null,null, 'D-U-R-I1','D-U-R-I2','D-U-R-C','D-U-R-P1','D-U-R-P2','D-U-L-I1','D-U-L-I2','D-U-L-C','D-U-L-P1','D-U-L-P2', null,null, null,null,null,null, 'D-L-R-I1','D-L-R-I2','D-L-R-C','D-L-R-P1','D-L-R-P2','D-L-L-I1','D-L-L-I2','D-L-L-C','D-L-L-P1','D-L-L-P2', null,null, null,null, null,null, null,null, null,null, null,null, null,null, null,null, null,null, null,'U-R-I1','U-R-I2','U-R-C','U-R-P1','U-R-P2','U-R-M1','U-R-M2', 'U-R-M3','U-L-I1','U-L-I2','U-L-C','U-L-P1','U-L-P2','U-L-M1','U-L-M2', 'U-L-M3','L-R-I1','L-R-I2','L-R-C','L-R-P1','L-R-P2','L-R-M1','L-R-M2', 'L-R-M3','L-L-I1','L-L-I2','L-L-C','L-L-P1','L-L-P2','L-L-M1','L-L-M2', 'L-L-M3']
+    };
+    
+    const toothtotalTemplates = {
+        adult: [32,0],
+        child: [0,20],
+        teenager: [32,20]
     };
 
     const ageGroupRadios = document.querySelectorAll('input[name="ageGroup"]');
@@ -435,7 +498,7 @@
                 }
     
                 // Add click event listener
-                button.addEventListener('click', () => handleButtonClick(button, label, selectedDisplay, question));
+                button.addEventListener('click', () => handleButtonClick(button, label, selectedDisplay, question, ageGroup));
     
                 container.appendChild(button);
             } else {
@@ -448,8 +511,10 @@
         });
     }
     
-    function handleButtonClick(button, label, selectedDisplay, question) {
+    function handleButtonClick(button, label, selectedDisplay, question, ageGroup) {
         const selectedArray = selectedNames[question];
+        const ptoothtotal = toothtotalTemplates[ageGroup][0];
+        const dtoothtotal = toothtotalTemplates[ageGroup][1];
     
         console.log(`Button clicked: ${label}`);
         console.log(`Initial selected array for ${question}:`, selectedArray);
@@ -479,6 +544,8 @@
             updateTabletab3(4,selectedNames['Q2'], '/');
             updateTabletab3(6,selectedNames['Q5'], 'yes');
             updateTabletab3(7,selectedNames['Q2'], '/');
+            //tab4 table change handle 
+            analysistable(ptoothtotal,dtoothtotal, selectedNames);
         }
     
         // Call function to update visibility based on Q3 (affecting Q6, Q7, Q8)
@@ -495,6 +562,8 @@
             updateTabletab3(13,selectedNames['Q2'], '/');
             updateTabletab3(15,selectedNames['Q8'], 'yes');
             updateTabletab3(16,selectedNames['Q2'], '/');
+            // tab4 table change handle
+            analysistable(ptoothtotal,dtoothtotal, selectedNames);
     
         }
 
@@ -508,26 +577,36 @@
             updateTabletab3(2,selectedNames['Q4'], 'yes');
             tab2totab3("tableQ4", 4, "size");
             tab2totab3("tableQ4", 5, "grade");
+            // tab4 table change handel 
+            analysistable(ptoothtotal,dtoothtotal, selectedNames);
         }
         
         if (question === 'Q5') {
             updateTabletab3(6,selectedNames['Q5'], 'yes');
             tab2totab3("tableQ5", 8, "grade");
+            // tab4 table change handel 
+            analysistable(ptoothtotal,dtoothtotal, selectedNames);
         }
 
         if (question === 'Q6') {
             updateTabletab3(9,selectedNames['Q6'], 'yes');
             tab2totab3("tableQ6", 11, "grade");
+            // tab4 table change handel 
+            analysistable(ptoothtotal,dtoothtotal, selectedNames);
         }
 
         if (question === 'Q7') {
             updateTabletab3(12,selectedNames['Q7'], 'yes');
             tab2totab3("tableQ7", 14, "grade");
+            // tab4 table change handel 
+            analysistable(ptoothtotal,dtoothtotal, selectedNames);
         }
 
         if (question === 'Q8') {
             updateTabletab3(15,selectedNames['Q8'], 'yes');
             tab2totab3("tableQ8", 17, "grade");
+            // tab4 table change handel 
+            analysistable(ptoothtotal,dtoothtotal, selectedNames);
         }
         
 
@@ -1046,6 +1125,94 @@
     });
     
     
+    // tab4 data analysis table function
+    function analysistable(ptoothtotal,dtoothtotal, selectedNames) {
+        
+        // Tooth 
+        const countQ2 = selectedNames.Q2.length;
+        const countDInQ2 = selectedNames.Q2.filter(item => item.includes("D-")).length;
+        const countPInQ2 = countQ2 - countDInQ2;
+        const Pcount = ptoothtotal - countPInQ2;
+        const Pcountpercent = (Pcount / ptoothtotal)*100;
+        const Dcount = dtoothtotal - countDInQ2;
+        const Dcountpercent = (Dcount / dtoothtotal)*100;
+        
+        // socket
+        const countQ3 = selectedNames.Q3.length;
+        const countDInQ3 = selectedNames.Q3.filter(item => item.includes("D-")).length;
+        const countPInQ3 = countQ3 - countDInQ3;
+        const PAcount = ptoothtotal - countPInQ3;
+        const PAcountpercent = (PAcount / ptoothtotal)*100;
+        const DAcount = dtoothtotal - countDInQ3;
+        const DAcountpercent = (DAcount / dtoothtotal)*100;
+        
+        // Carries
+        const countQ4 = selectedNames.Q4.length;
+        const countDInQ4 = selectedNames.Q4.filter(item => item.includes("D-")).length;
+        const countPInQ4 = countQ4 - countDInQ4;
+        const Pcarrispercent = (countPInQ4/Pcount)*100;
+        const Dcarrispercent = (countDInQ4/Dcount)*100;
+
+        //EH
+        const countQ5 = selectedNames.Q5.length;
+        const countDInQ5 = selectedNames.Q5.filter(item => item.includes("D-")).length;
+        const countPInQ5 = countQ5 - countDInQ5;
+        const PEHpercent = (countPInQ5/Pcount)*100;
+        const DEHpercent = (countDInQ5/Dcount)*100;
+
+        //ABS
+        const countQ6 = selectedNames.Q6.length;
+        const countDInQ6 = selectedNames.Q6.filter(item => item.includes("D-")).length;
+        const countPInQ6 = countQ6 - countDInQ6;
+        const PABSpercent = (countPInQ6 / PAcount)*100;
+        const DABSpercent = (countDInQ6 / DAcount)*100;
+        
+        //PER
+        const countQ7 = selectedNames.Q7.length;
+        const countDInQ7 = selectedNames.Q7.filter(item => item.includes("D-")).length;
+        const countPInQ7 = countQ7 - countDInQ7;
+        const PPERpercent = (countPInQ7 / PAcount)*100;
+        const DPERpercent = (countDInQ7 / DAcount)*100;
+        
+        //DC
+        const countQ8 = selectedNames.Q8.length;
+        const countDInQ8 = selectedNames.Q8.filter(item => item.includes("D-")).length;
+        const countPInQ8 = countQ8 - countDInQ8;
+        const PDCpercent = (countPInQ8 / PAcount)*100;
+        const DDCpercent = (countDInQ8 / DAcount)*100;
+
+        
+        // Update the table rows with the calculated values
+        // Row 1: Preserved Teeth
+        document.querySelector('#tabletab4 tbody tr:nth-child(1) td:nth-child(2)').textContent = `${Pcount} (${Pcountpercent.toFixed(2)}% to all)`;
+        document.querySelector('#tabletab4 tbody tr:nth-child(1) td:nth-child(3)').textContent = `${Dcount} (${Dcountpercent.toFixed(2)}% to all)`;
+    
+        // Row 2: Teeth with Carious Lesions (C)
+        document.querySelector('#tabletab4 tbody tr:nth-child(2) td:nth-child(2)').textContent = `${countPInQ4} (${Pcarrispercent.toFixed(2)}% to preserved)`;
+        document.querySelector('#tabletab4 tbody tr:nth-child(2) td:nth-child(3)').textContent = `${countDInQ4} (${Dcarrispercent.toFixed(2)}% to preserved)`;
+    
+        // Row 3: Teeth with Enamel Hypoplasia (EH)
+        document.querySelector('#tabletab4 tbody tr:nth-child(3) td:nth-child(2)').textContent = `${countPInQ5} (${PEHpercent.toFixed(2)}% to preserved)`;
+        document.querySelector('#tabletab4 tbody tr:nth-child(3) td:nth-child(3)').textContent = `${countDInQ5} (${DEHpercent.toFixed(2)}% to preserved)`;
+    
+        // Row 4: Preserved Alveolar Bone
+        document.querySelector('#tabletab4 tbody tr:nth-child(4) td:nth-child(2)').textContent = `${PAcount} (${PAcountpercent.toFixed(2)}% to all)`;
+        document.querySelector('#tabletab4 tbody tr:nth-child(4) td:nth-child(3)').textContent = `${DAcount} (${DAcountpercent.toFixed(2)}% to all)`;
+    
+        // Row 5: Teeth with Periapical Lesions (ABS)
+        document.querySelector('#tabletab4 tbody tr:nth-child(5) td:nth-child(2)').textContent = `${countPInQ6} (${PABSpercent.toFixed(2)}% to preserved)`;
+        document.querySelector('#tabletab4 tbody tr:nth-child(5) td:nth-child(3)').textContent = `${countDInQ6} (${DABSpercent.toFixed(2)}% to preserved)`;
+    
+        // Row 6: Teeth with Periapical Periodontal Diseases (PER)
+        document.querySelector('#tabletab4 tbody tr:nth-child(6) td:nth-child(2)').textContent = `${countPInQ7} (${PPERpercent.toFixed(2)}% to preserved)`;
+        document.querySelector('#tabletab4 tbody tr:nth-child(6) td:nth-child(3)').textContent = `${countDInQ7} (${DPERpercent.toFixed(2)}% to preserved)`;
+    
+        // Row 7: Teeth with Periapical Dental Calculus (DC)
+        document.querySelector('#tabletab4 tbody tr:nth-child(7) td:nth-child(2)').textContent = `${countPInQ8} (${PDCpercent.toFixed(2)}% to preserved)`;
+        document.querySelector('#tabletab4 tbody tr:nth-child(7) td:nth-child(3)').textContent = `${countDInQ8} (${DDCpercent.toFixed(2)}% to preserved)`;
+
+    }
+
 
     // Event listener for age group radio buttons
     ageGroupRadios.forEach(radio => {
