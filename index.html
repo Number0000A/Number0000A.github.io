@@ -360,37 +360,37 @@
             <tbody>
                 <tr>
                 <td>No of preserved teeth:</td>
-                <td>0 (0 % to all)</td> <!-- Permenant -->
-                <td>0 (0 % to all)</td> <!-- Deciduous -->
+                <td>0 (0 % )</td> <!-- Permenant -->
+                <td>0 (0 % )</td> <!-- Deciduous -->
                 </tr>
                 <td>No of teeth with carious lesions(C):</td>
-                <td>0 (0 % to preserved)</td> <!-- Permenant -->
-                <td>0 (0 % to preserved)</td> <!-- Deciduous -->
+                <td>0 (0 % )</td> <!-- Permenant -->
+                <td>0 (0 % )</td> <!-- Deciduous -->
                 </tr>
                 <tr>
                 <td>No of teeth with Enamel hypoplasia(EH):</td>
-                <td>0 (0 % to preserved)</td> <!-- Permenant -->
-                <td>0 (0 % to preserved)</td> <!-- Deciduous -->
+                <td>0 (0 % )</td> <!-- Permenant -->
+                <td>0 (0 % )</td> <!-- Deciduous -->
                 </tr>
                 <tr>
                 <td>No of preserved Alveolar Bone:</td>
-                <td>0 (0 % to all)</td> <!-- Permenant -->
-                <td>0 (0 % to all)</td> <!-- Deciduous -->
+                <td>0 (0 % )</td> <!-- Permenant -->
+                <td>0 (0 % )</td> <!-- Deciduous -->
                 </tr>
                 <tr>
                 <td>No of teeth with periapical lesions(ABS):</td>
-                <td>0 (0 % to preserved)</td> <!-- Permenant -->
-                <td>0 (0 % to preserved)</td> <!-- Deciduous -->
+                <td>0 (0 % )</td> <!-- Permenant -->
+                <td>0 (0 % )</td> <!-- Deciduous -->
                 </tr>
                 <tr>
                 <td>No of teeth with periapical periodontal diseases (PER):</td>
-                <td>0 (0 % to preserved)</td> <!-- Permenant -->
-                <td>0 (0 % to preserved)</td> <!-- Deciduous -->
+                <td>0 (0 % )</td> <!-- Permenant -->
+                <td>0 (0 % )</td> <!-- Deciduous -->
                 </tr>
                 <tr>
                 <td>No of teeth with periapical dental calculus(DC):</td>
-                <td>0 (0 % to preserved)</td> <!-- Permenant -->
-                <td>0 (0 % to preserved)</td> <!-- Deciduous -->
+                <td>0 (0 % )</td> <!-- Permenant -->
+                <td>0 (0 % )</td> <!-- Deciduous -->
                 </tr>
             </tbody>
         </table>
@@ -1184,32 +1184,32 @@
         
         // Update the table rows with the calculated values
         // Row 1: Preserved Teeth
-        document.querySelector('#tabletab4 tbody tr:nth-child(1) td:nth-child(2)').textContent = `${Pcount} (${Pcountpercent.toFixed(2)}% to all)`;
-        document.querySelector('#tabletab4 tbody tr:nth-child(1) td:nth-child(3)').textContent = `${Dcount} (${Dcountpercent.toFixed(2)}% to all)`;
+        document.querySelector('#tabletab4 tbody tr:nth-child(1) td:nth-child(2)').textContent = `${Pcount} (${Pcountpercent.toFixed(2)}% )`;
+        document.querySelector('#tabletab4 tbody tr:nth-child(1) td:nth-child(3)').textContent = `${Dcount} (${Dcountpercent.toFixed(2)}% )`;
     
         // Row 2: Teeth with Carious Lesions (C)
-        document.querySelector('#tabletab4 tbody tr:nth-child(2) td:nth-child(2)').textContent = `${countPInQ4} (${Pcarrispercent.toFixed(2)}% to preserved)`;
-        document.querySelector('#tabletab4 tbody tr:nth-child(2) td:nth-child(3)').textContent = `${countDInQ4} (${Dcarrispercent.toFixed(2)}% to preserved)`;
+        document.querySelector('#tabletab4 tbody tr:nth-child(2) td:nth-child(2)').textContent = `${countPInQ4} (${Pcarrispercent.toFixed(2)}% )`;
+        document.querySelector('#tabletab4 tbody tr:nth-child(2) td:nth-child(3)').textContent = `${countDInQ4} (${Dcarrispercent.toFixed(2)}% )`;
     
         // Row 3: Teeth with Enamel Hypoplasia (EH)
-        document.querySelector('#tabletab4 tbody tr:nth-child(3) td:nth-child(2)').textContent = `${countPInQ5} (${PEHpercent.toFixed(2)}% to preserved)`;
-        document.querySelector('#tabletab4 tbody tr:nth-child(3) td:nth-child(3)').textContent = `${countDInQ5} (${DEHpercent.toFixed(2)}% to preserved)`;
+        document.querySelector('#tabletab4 tbody tr:nth-child(3) td:nth-child(2)').textContent = `${countPInQ5} (${PEHpercent.toFixed(2)}% )`;
+        document.querySelector('#tabletab4 tbody tr:nth-child(3) td:nth-child(3)').textContent = `${countDInQ5} (${DEHpercent.toFixed(2)}% )`;
     
         // Row 4: Preserved Alveolar Bone
-        document.querySelector('#tabletab4 tbody tr:nth-child(4) td:nth-child(2)').textContent = `${PAcount} (${PAcountpercent.toFixed(2)}% to all)`;
-        document.querySelector('#tabletab4 tbody tr:nth-child(4) td:nth-child(3)').textContent = `${DAcount} (${DAcountpercent.toFixed(2)}% to all)`;
+        document.querySelector('#tabletab4 tbody tr:nth-child(4) td:nth-child(2)').textContent = `${PAcount} (${PAcountpercent.toFixed(2)}% )`;
+        document.querySelector('#tabletab4 tbody tr:nth-child(4) td:nth-child(3)').textContent = `${DAcount} (${DAcountpercent.toFixed(2)}% )`;
     
         // Row 5: Teeth with Periapical Lesions (ABS)
-        document.querySelector('#tabletab4 tbody tr:nth-child(5) td:nth-child(2)').textContent = `${countPInQ6} (${PABSpercent.toFixed(2)}% to preserved)`;
-        document.querySelector('#tabletab4 tbody tr:nth-child(5) td:nth-child(3)').textContent = `${countDInQ6} (${DABSpercent.toFixed(2)}% to preserved)`;
+        document.querySelector('#tabletab4 tbody tr:nth-child(5) td:nth-child(2)').textContent = `${countPInQ6} (${PABSpercent.toFixed(2)}% )`;
+        document.querySelector('#tabletab4 tbody tr:nth-child(5) td:nth-child(3)').textContent = `${countDInQ6} (${DABSpercent.toFixed(2)}% )`;
     
         // Row 6: Teeth with Periapical Periodontal Diseases (PER)
-        document.querySelector('#tabletab4 tbody tr:nth-child(6) td:nth-child(2)').textContent = `${countPInQ7} (${PPERpercent.toFixed(2)}% to preserved)`;
-        document.querySelector('#tabletab4 tbody tr:nth-child(6) td:nth-child(3)').textContent = `${countDInQ7} (${DPERpercent.toFixed(2)}% to preserved)`;
+        document.querySelector('#tabletab4 tbody tr:nth-child(6) td:nth-child(2)').textContent = `${countPInQ7} (${PPERpercent.toFixed(2)}% )`;
+        document.querySelector('#tabletab4 tbody tr:nth-child(6) td:nth-child(3)').textContent = `${countDInQ7} (${DPERpercent.toFixed(2)}% )`;
     
         // Row 7: Teeth with Periapical Dental Calculus (DC)
-        document.querySelector('#tabletab4 tbody tr:nth-child(7) td:nth-child(2)').textContent = `${countPInQ8} (${PDCpercent.toFixed(2)}% to preserved)`;
-        document.querySelector('#tabletab4 tbody tr:nth-child(7) td:nth-child(3)').textContent = `${countDInQ8} (${DDCpercent.toFixed(2)}% to preserved)`;
+        document.querySelector('#tabletab4 tbody tr:nth-child(7) td:nth-child(2)').textContent = `${countPInQ8} (${PDCpercent.toFixed(2)}% )`;
+        document.querySelector('#tabletab4 tbody tr:nth-child(7) td:nth-child(3)').textContent = `${countDInQ8} (${DDCpercent.toFixed(2)}% )`;
 
     }
 
